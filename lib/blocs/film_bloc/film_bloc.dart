@@ -15,7 +15,7 @@ class FilmBloc extends Bloc<FilmEvent, FilmState> {
   @override
   Stream<FilmState> mapEventToState(FilmEvent event) async* {
     if (event is FilmLibraryStart) {
-       yield FilmLibraryInProgress();
+      yield FilmLibraryInProgress();
       try {
         final Library library = await filmRepository.getFullLibrary();
         yield FilmLibraryLoadSuccess(lib: library);

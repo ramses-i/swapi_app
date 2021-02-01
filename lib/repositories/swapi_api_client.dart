@@ -34,4 +34,25 @@ class SwapiApiClient {
     final filmJson = jsonDecode(filmResponse.body) as Map<String, dynamic>;
     return Film.fromJson(filmJson);
   }
+
+  Future<Character> fetchCharacter(String url) async {
+    final characterUrl = '$url';
+
+    final characterResponse = await this.httpClient.get(characterUrl);
+    if (characterResponse.statusCode != 200) {
+      throw Exception("Error getting the character");
+    }
+    final characterInfo =
+        jsonDecode(characterResponse.body) as Map<String, dynamic>;
+    return Character.fromJson(characterInfo);
+  }
+
+  Future<List<Character>> fetchCharacters(List<String> characterURLs) async {
+    List<Character> characters = new List();
+    characterURLs.forEach((element) async {
+      Character char = await fetchCharacter(element);
+      characters.add(char);
+    });
+    return characters;
+  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swapi/widgets/film_characters.dart';
 import 'package:swapi/widgets/film_info.dart';
+import 'package:swapi/widgets/film_list.dart';
 
 import 'package:swapi/widgets/widgets.dart';
 import 'package:swapi/blocs/blocs.dart';
@@ -40,22 +42,7 @@ class Film extends StatelessWidget {
 
             if (state is FilmLibraryLoadSuccess) {
               return Center(
-                child: ListView.separated(
-                    padding: const EdgeInsets.all(8),
-                    itemCount: state.lib.results.length,
-                    separatorBuilder: (context, index) => Divider(
-                          color: Colors.black,
-                        ),
-                    itemBuilder: (BuildContext context, int index) {
-                      final libItem = state.lib.results[index];
-                      return Column(
-                        children: <Widget>[
-                          Text(libItem.title,
-                              style: Theme.of(context).textTheme.headline5),
-                          Text(libItem.director),
-                        ],
-                      );
-                    }),
+                child: FilmList(films: state.lib.results)
               );
             }
             if (state is FilmLoadInProgress) {
@@ -88,6 +75,9 @@ class Film extends StatelessWidget {
                       textSize: 15,
                       style: FontWeight.normal,
                     ),
+                  ),
+                  Center(
+                    child: FilmCharacters(characters: state.film.charactersUrl),
                   ),
                 ],
               );
