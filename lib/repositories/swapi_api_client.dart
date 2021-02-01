@@ -36,9 +36,7 @@ class SwapiApiClient {
   }
 
   Future<Character> fetchCharacter(String url) async {
-    final characterUrl = '$url';
-
-    final characterResponse = await this.httpClient.get(characterUrl);
+    final characterResponse = await this.httpClient.get(url);
     if (characterResponse.statusCode != 200) {
       throw Exception("Error getting the character");
     }
@@ -47,7 +45,7 @@ class SwapiApiClient {
     return Character.fromJson(characterInfo);
   }
 
-  Future<List<Character>> fetchCharacters(List<String> characterURLs) async {
+  Future<List<Character>> fetchCharacters(List<dynamic> characterURLs) async {
     List<Character> characters = new List();
     characterURLs.forEach((element) async {
       Character char = await fetchCharacter(element);

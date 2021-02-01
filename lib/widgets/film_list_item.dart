@@ -46,7 +46,7 @@ class FilmListItem extends StatelessWidget {
                     "https://c8.alamy.com/compes/b3kr2h/poster-de-star-wars-para-el-1977-tcf-lucasfilm-film-b3kr2h.jpg"),
               ),
             ),
-          )
+          ),
         ],
       )),
     );

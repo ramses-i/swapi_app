@@ -28,7 +28,8 @@ class FilmBloc extends Bloc<FilmEvent, FilmState> {
       yield FilmLoadInProgress();
       try {
         final Film film = await filmRepository.getFilm(event.filmId);
-        yield FilmLoadSuccess(film: film);
+        final List<Character> characters = await filmRepository.getFilmCharacters(film.charactersUrl);
+        yield FilmLoadSuccess(film: film, characters: characters);
       } catch (_) {
         yield FilmLoadFailure();
       }

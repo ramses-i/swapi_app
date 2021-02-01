@@ -16,11 +16,12 @@ class FilmLoadInProgress extends FilmState {}
 
 class FilmLoadSuccess extends FilmState {
   final Film film;
+  final List<Character> characters;
 
-  const FilmLoadSuccess({@required this.film}) : assert(film != null);
+  const FilmLoadSuccess({@required this.film, @required this.characters}) : assert(film != null && characters != null);
 
   @override
-  List<Object> get props => [film];
+  List<Object> get props => [film, characters];
 }
 
 class FilmLoadFailure extends FilmState {}
