@@ -44,13 +44,4 @@ class SwapiApiClient {
         jsonDecode(characterResponse.body) as Map<String, dynamic>;
     return Character.fromJson(characterInfo);
   }
-
-  Future<List<Character>> fetchCharacters(List<dynamic> characterURLs) async {
-    List<Character> characters = new List();
-    characterURLs.forEach((element) async {
-      Character char = await fetchCharacter(element);
-      characters.add(char);
-    });
-    return characters;
-  }
 }

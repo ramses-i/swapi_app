@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  bloc: ^6.1.1
   flutter_bloc: ^6.1.1
   http: ^0.12.0
   equatable: ^1.0.0

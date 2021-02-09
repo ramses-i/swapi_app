@@ -8,8 +8,7 @@ abstract class FilmEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FilmLibraryStart extends FilmEvent{
-}
+class FilmLibraryStart extends FilmEvent {}
 
 class FilmRequested extends FilmEvent {
   final String filmId;

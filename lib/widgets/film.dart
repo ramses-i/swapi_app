@@ -39,7 +39,6 @@ class Film extends StatelessWidget {
             if (state is FilmLibraryInProgress) {
               return Center(child: CircularProgressIndicator());
             }
-
             if (state is FilmLibraryLoadSuccess) {
               return FilmList(films: state.lib.results);
             }
@@ -47,8 +46,7 @@ class Film extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             }
             if (state is FilmLoadSuccess) {
-              final film = state.film;
-              return FilmInfo(film: film, characters: state.characters);
+              return FilmInfo(film: state.film, cast: state.cast,);
             }
             if (state is FilmLoadFailure) {
               return FailureScreen(message: "Something didnt work out!");

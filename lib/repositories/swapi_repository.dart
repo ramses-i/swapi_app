@@ -15,8 +15,8 @@ class FilmRepository {
     return swapiClient.fetchFilm(filmId);
   }
 
-  Future<List<Character>> getFilmCharacters(List<dynamic> characterURLs) async {
-    var result = await swapiClient.fetchCharacters(characterURLs);
-    return result;
+  Future<Character> getCharacter(String characterURL) async {
+    return swapiClient.fetchCharacter(characterURL);
   }
+
 }
