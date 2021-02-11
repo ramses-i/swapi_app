@@ -27,15 +27,15 @@ class FilmBloc extends Bloc<FilmEvent, FilmState> {
     if (event is FilmRequested) {
       yield FilmLoadInProgress();
       try {
-        final List<dynamic> result = [];
         final Film film = await filmRepository.getFilm(event.filmId);
-        film.charactersUrl.forEach((element) async {
-         await filmRepository.getCharacter(element).then((value) => result.add(value));
-        });
-        yield FilmLoadSuccess(film: film, cast: result);
+        final People people = await filmRepository.getCharacters();
+        List<Character> results = filmRepository.filterResults(film, people);
+        yield FilmLoadSuccess(film: film, cast: results);
       } catch (_) {
         yield FilmLoadFailure();
       }
     }
   }
+
+ 
 }

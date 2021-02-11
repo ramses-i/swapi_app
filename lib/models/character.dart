@@ -9,6 +9,7 @@ class Character extends Equatable {
   final String eyeColor;
   final String birthYear;
   final String gender;
+  final String url;
 
   const Character({
     this.name,
@@ -18,7 +19,8 @@ class Character extends Equatable {
     this.skinColor,
     this.eyeColor,
     this.birthYear,
-    this.gender
+    this.gender,
+    this.url
   });
 
   @override
@@ -34,8 +36,8 @@ class Character extends Equatable {
       skinColor: json['skin_color'],
       eyeColor: json['eye_color'],
       birthYear: json['birth_year'],
-      gender: json['gender']
-
+      gender: json['gender'],
+      url: json['url']
     );
   }
 }

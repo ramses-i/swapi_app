@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:swapi/models/library.dart';
 import 'package:swapi/models/models.dart';
 import 'package:meta/meta.dart';
+import 'package:swapi/models/people.dart';
 
 class SwapiApiClient {
   static const baseUrl = 'https://swapi.dev/api';
@@ -43,5 +44,16 @@ class SwapiApiClient {
     final characterInfo =
         jsonDecode(characterResponse.body) as Map<String, dynamic>;
     return Character.fromJson(characterInfo);
+  }
+
+  Future<People> fetchCharacters() async {
+    final peopleBranchURL = '$baseUrl/people';
+    final peopleBranchResponse = await this.httpClient.get(peopleBranchURL);
+    if (peopleBranchResponse.statusCode != 200) {
+      throw Exception("Error getting the film branch info");
+    }
+    final peopleBranchJSON =
+        jsonDecode(peopleBranchResponse.body) as Map<String, dynamic>;
+    return People.fromJson(peopleBranchJSON);
   }
 }

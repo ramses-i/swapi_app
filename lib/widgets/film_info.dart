@@ -3,7 +3,7 @@ import 'package:swapi/models/models.dart';
 
 class FilmInfo extends StatelessWidget {
   final Film film;
-  final List<dynamic> cast;
+  final List<Character> cast;
 
   FilmInfo({Key key, @required this.film, @required this.cast})
       : assert(film != null),
@@ -69,7 +69,7 @@ class FilmInfo extends StatelessWidget {
                           color: Colors.transparent,
                         ),
                     itemBuilder: (BuildContext context, int index) {
-                      return Text(cast[index]);
+                      return Text(cast[index].name);
                     })
               ],
             ))
